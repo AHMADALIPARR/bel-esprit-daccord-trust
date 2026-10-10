@@ -9,9 +9,9 @@ Only `public/` is deployed. Commercial application source, model weights, creden
 2. Connect `AHMADALIPARR/bel-esprit-daccord-trust`, production branch `main`.
 3. Framework: None. Build command: leave empty. Output directory: `public`.
 4. Deploy and verify the Pages URL.
-5. Add the confirmed domain in Pages → Custom domains. Let Cloudflare configure DNS after checking for existing records.
+5. Add `belespritdaccord.uk` in Pages → Custom domains. Let Cloudflare configure DNS after checking for existing records. Optionally add `www.belespritdaccord.uk` and redirect it to the apex.
 
-Git pushes to `main` trigger production deployments after this integration is connected. Do not replace existing apex DNS without selecting that domain deliberately.
+Git pushes to `main` trigger production deployments after this integration is connected. This site uses its own domain and Pages project, separate from SnapKitty infrastructure. Do not modify collectivekitty.com or its Cloudflare resources.
 
 Official guides:
 - https://developers.cloudflare.com/pages/configuration/git-integration/
@@ -25,3 +25,11 @@ Then visit http://localhost:8080.
 ## Content and rights
 
 The website does not assert charity registration, tax deductibility, or production certification. Linked work is described within its stated scope. Original website content is all rights reserved; linked projects retain their respective licenses.
+
+## Brand assets
+
+- `public/brand/linkedin-cover.png`: generated cover artwork; use LinkedIn’s crop preview when uploading.
+- `public/brand/logo-transparent.png`: square logo with transparency.
+- `BRAND-PROMPTS.md`: generation prompts and design intent.
+
+Domain configuration is prepared; DNS activation must be verified in Cloudflare.
