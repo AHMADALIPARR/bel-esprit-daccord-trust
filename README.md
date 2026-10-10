@@ -33,3 +33,9 @@ The website does not assert charity registration, tax deductibility, or producti
 - `BRAND-PROMPTS.md`: generation prompts and design intent.
 
 Domain configuration is prepared; DNS activation must be verified in Cloudflare.
+
+## Principal intellectual property project
+
+ORTHO32 is the trust’s principal intellectual property project, as designated by the owner. The homepage prominently links its public architecture site and trust-holdings repository. Summaries describe the published project materials; this website update does not independently certify hardware or relicense ORTHO32.
+
+https://bel-esprit-d-accord-trust-holdings.github.io/ORTHO32/
