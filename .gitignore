@@ -2,3 +2,5 @@ node_modules/
 .wrangler/
 .local/
 .env*
+.dev.vars*
+__pycache__/

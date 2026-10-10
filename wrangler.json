@@ -1,0 +1,11 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "bel-esprit-daccord-trust",
+  "account_id": "7ffe914771ff2f13c35b86f9645b8b42",
+  "main": "worker/index.mjs",
+  "compatibility_date": "2026-10-10",
+  "assets": {"directory": "./public", "binding": "ASSETS", "run_worker_first": ["/api/*"]},
+  "vars": {"SITE_ORIGIN": "https://belespritdaccord.uk"},
+  "ratelimits": [{"name": "API_LIMITER", "namespace_id": "72328531", "simple": {"limit": 5, "period": 60}}],
+  "observability": {"enabled": false}
+}

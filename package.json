@@ -1,0 +1,28 @@
+{
+  "name": "bel-esprit-daccord-trust",
+  "version": "1.0.0",
+  "description": "Bel Esprit d’Accord Trust website and local-model chat gateway",
+  "scripts": {
+    "build": "python -X utf8 scripts/build.py",
+    "test": "node --test test/*.test.mjs",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "bridge": "node bridge/server.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AHMADALIPARR/bel-esprit-daccord-trust.git"
+  },
+  "keywords": [],
+  "author": "Ahmad Ali Parr",
+  "license": "UNLICENSED",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/AHMADALIPARR/bel-esprit-daccord-trust/issues"
+  },
+  "homepage": "https://github.com/AHMADALIPARR/bel-esprit-daccord-trust#readme",
+  "private": true,
+  "devDependencies": {
+    "wrangler": "^4.149.0"
+  }
+}

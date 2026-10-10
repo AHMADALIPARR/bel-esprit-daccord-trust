@@ -1,41 +1,58 @@
 # Bel Esprit d’Accord Trust
 
-A responsive static website for the trust's research, projects, and contact information.
-Only `public/` is deployed. Commercial application source, model weights, credentials, and local databases are excluded.
+Plain HTML and CSS website, a Cloudflare Worker for API routes, and a separate local-model bridge. Owner: Ahmad Ali Parr · حمد علي بار. Contact: A.parr@belespritdaccord.uk.
 
-## Cloudflare Pages + GitHub
+## Pages
 
-1. In Cloudflare, open Workers & Pages and create a Pages project using Git integration.
-2. Connect `AHMADALIPARR/bel-esprit-daccord-trust`, production branch `main`.
-3. Framework: None. Build command: leave empty. Output directory: `public`.
-4. Deploy and verify the Pages URL.
-5. Add `belespritdaccord.uk` in Pages → Custom domains. Let Cloudflare configure DNS after checking for existing records. Optionally add `www.belespritdaccord.uk` and redirect it to the apex.
+- `/`: factual introduction, portfolio counts, ORTHO32, and featured preprint.
+- `/portfolio/`: one project table with status, license, and source links.
+- `/projects/<slug>/`: problem, approach, verification limits, license, and contact.
+- `/company/`: ownership, supplied photograph, licensing, and security.
+- `/contact/`: contact form routed through `/api/contact`.
+- `/privacy/`: website, contact, and chat processing details.
 
-Git pushes to `main` trigger production deployments after this integration is connected. This site uses its own domain and Pages project, separate from SnapKitty infrastructure. Do not modify collectivekitty.com or its Cloudflare resources.
+`content/projects.json` and `content/knowledge.json` are generated from the reviewed summaries in `scripts/build.py`. Review descriptions and license terms before changing them. The holdings repository review was performed on 10 October 2026; it was not a compiler or hardware audit.
 
-Official guides:
-- https://developers.cloudflare.com/pages/configuration/git-integration/
-- https://developers.cloudflare.com/pages/configuration/custom-domains/
+## Commands
 
-## Local preview
+```text
+npm ci
+npm run build
+npm test
+npm run dev
+npm run deploy
+```
 
-From this repository: `python -m http.server 8080 --directory public`
-Then visit http://localhost:8080.
+`wrangler.json` targets the existing `bel-esprit-daccord-trust` Worker in account `7ffe914771ff2f13c35b86f9645b8b42`. Static assets are `public/`; `/api/*` executes Worker code first. GitHub integration must deploy with Wrangler for these APIs. A static-only Pages deployment will serve the pages but not these Worker endpoints.
 
-## Content and rights
+Do not change the domain's iCloud MX, DKIM, SPF, or Apple verification records. This deployment is separate from collectivekitty.com and SnapKitty infrastructure.
 
-The website does not assert charity registration, tax deductibility, or production certification. Linked work is described within its stated scope. Original website content is all rights reserved; linked projects retain their respective licenses.
+## Contact
 
-## Brand assets
+`POST /api/contact` validates fields and prepares a mailto draft addressed to A.parr@belespritdaccord.uk. It returns `delivered: false`. The visitor reviews and sends it in their own mail client. Direct inbox submission is not configured; it requires an authorized mail delivery service. There is no contact database.
 
-- `public/brand/linkedin-cover.png`: generated cover artwork; use LinkedIn’s crop preview when uploading.
-- `public/brand/logo-transparent.png`: square logo with transparency.
-- `BRAND-PROMPTS.md`: generation prompts and design intent.
+## Local-model chat
 
-Domain configuration is prepared; DNS activation must be verified in Cloudflare.
+`POST /api/chat` forwards only bounded conversation messages to a configured HTTPS local bridge; arbitrary visitor targets and system messages are rejected. No paid cloud inference provider is configured. The Worker must have its rate-limit binding; it fails closed if that binding is absent.
 
-## Principal intellectual property project
+The bridge uses an OpenAI-compatible local LM Studio endpoint with a Nemotron or DAVID model identifier. If DAVID uses another API contract, it requires an adapter; do not pretend that its endpoint is OpenAI-compatible without testing it.
 
-ORTHO32 is the trust’s principal intellectual property project, as designated by the owner. The homepage prominently links its public architecture site and trust-holdings repository. Summaries describe the published project materials; this website update does not independently certify hardware or relicense ORTHO32.
+1. Set a random private `LOCAL_CHAT_TOKEN` (at least 32 characters) in ignored `.local/chat.env`.
+2. Set `LOCAL_MODEL_ID` to the installed local Nemotron or DAVID identifier. Ensure the model server is running.
+3. Run `docker compose up -d --build`, or use `npm run bridge` with those environment variables for a native local bridge.
+4. The container exposes only loopback port 8788. LM Studio must be reachable from the container at `host.docker.internal:1234`; configure its bind/firewall deliberately. The native bridge uses `127.0.0.1:1234`.
+5. Connect only the bridge through a named Cloudflare Tunnel. Do not expose LM Studio, the supervisor, desktop tools, or general DAVID administrative routes.
+6. Add an Access service-token policy for the tunnel hostname where available. Put `LOCAL_CHAT_URL`, `LOCAL_CHAT_TOKEN`, and optional `ACCESS_CLIENT_ID` / `ACCESS_CLIENT_SECRET` in Worker secrets. Never put secrets in GitHub source or browser JavaScript.
+7. Verify `/api/health` and an actual `/api/chat` request on the production domain.
 
-https://bel-esprit-d-accord-trust-holdings.github.io/ORTHO32/
+Without a connected bridge, chat returns an explicit 503 message. It does not substitute fabricated responses or a paid provider. A rate limit is approximate per Cloudflare location; the bridge also admits one inference request at a time. No conversation persistence is implemented.
+
+## Validation
+
+Worker tests cover correct contact address, no false delivery claims, cross-origin rejection, message-role restrictions, request size limits, rate-limit behavior, upstream secret isolation, sanitized errors, and asset dispatch. Internal HTML files and fragments are checked before release. Browser visual QA and Docker execution require their corresponding installed tools.
+
+## Design and rights
+
+The information hierarchy draws on the supplied Zurich Instruments reference. Its product images, brand, copy, specifications, and trade dress are not reproduced. The supplied company photograph is preserved as uploaded.
+
+Original website materials are proprietary and publicly visible; linked repositories keep their own terms. `LICENSE` does not relicense any holdings project.
