@@ -56,3 +56,13 @@ Worker tests cover correct contact address, no false delivery claims, cross-orig
 The information hierarchy draws on the supplied Zurich Instruments reference. Its product images, brand, copy, specifications, and trade dress are not reproduced. The supplied company photograph is preserved as uploaded.
 
 Original website materials are proprietary and publicly visible; linked repositories keep their own terms. `LICENSE` does not relicense any holdings project.
+
+## Current deployment state
+
+The static pages and contact Worker are deployed on belespritdaccord.uk. The local Nemotron model is loaded as `trust-nemotron`; a native bridge and named tunnel are running for this session. A local authenticated inference check returned the correct C#/.NET host language. The first response took approximately one minute.
+
+Public chat activation still requires the CNAME for `chat-origin.belespritdaccord.uk` pointing to `3107355f-cda7-48bf-87c5-acf713cda23e.cfargotunnel.com`, with proxy enabled. The current OAuth authorization cannot edit DNS.
+
+The model, bridge, tunnel, and machine must remain running. For native restart after these processes have stopped, use `powershell -File scripts/start-local-chat.ps1`; ensure LM Studio has loaded `trust-nemotron` first. Automatic boot startup is not installed. Docker packaging is supplied but Docker is unavailable on this machine, so it has not been executed here.
+
+Desktop rendering and a 390-pixel mobile viewport were checked in Edge. The chat panel remained inside the mobile viewport (358-pixel panel; 390-pixel document width).
