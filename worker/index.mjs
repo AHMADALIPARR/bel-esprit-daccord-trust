@@ -31,7 +31,7 @@ export async function handle(request,env,fetcher=fetch){
  if(!env.LOCAL_CHAT_URL||!env.LOCAL_CHAT_TOKEN)return json({error:'The local assistant is not connected yet. Please contact '+email+'.'},503);
  let target;try{target=new URL(env.LOCAL_CHAT_URL);if(target.protocol!=='https:'||target.username||target.password)throw new Error();}catch{return json({error:'The assistant connection is not configured correctly.'},503);}
  try{
-  const upstream=await fetcher(target,{method:'POST',redirect:'error',headers:{'Content-Type':'application/json','Authorization':'Bearer '+env.LOCAL_CHAT_TOKEN,...(env.ACCESS_CLIENT_ID&&env.ACCESS_CLIENT_SECRET?{'CF-Access-Client-Id':env.ACCESS_CLIENT_ID,'CF-Access-Client-Secret':env.ACCESS_CLIENT_SECRET}:{})},body:JSON.stringify({messages:data.messages}),signal:AbortSignal.timeout(85000)});
+  const upstream=await fetcher(target,{method:'POST',redirect:'error',headers:{'Content-Type':'application/json','Authorization':'Bearer '+env.LOCAL_CHAT_TOKEN,...(env.ACCESS_CLIENT_ID&&env.ACCESS_CLIENT_SECRET?{'CF-Access-Client-Id':env.ACCESS_CLIENT_ID,'CF-Access-Client-Secret':env.ACCESS_CLIENT_SECRET}:{})},body:JSON.stringify({messages:data.messages}),signal:AbortSignal.timeout(125000)});
   if(!upstream.ok)return json({error:'The local assistant is busy or offline. Please try again later.'},upstream.status===429?429:503);
   const answer=await upstream.json();if(typeof answer.answer!=='string'||!answer.answer.trim()||answer.answer.length>12000)throw new Error();return json({answer:answer.answer});
  }catch{return json({error:'The local assistant is unavailable. Please try again later.'},503);}

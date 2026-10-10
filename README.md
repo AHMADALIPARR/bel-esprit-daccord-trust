@@ -59,7 +59,7 @@ Original website materials are proprietary and publicly visible; linked reposito
 
 ## Current deployment state
 
-The static pages and contact Worker are deployed on belespritdaccord.uk. The local Nemotron model is loaded as `trust-nemotron`; a native bridge and named tunnel are running for this session. A local authenticated inference check returned the correct C#/.NET host language. The first response took approximately one minute.
+The static pages and contact Worker are deployed on belespritdaccord.uk. The local Nemotron model is loaded as `trust-nemotron`; a native bridge and named tunnel are running for this session. A local authenticated inference check returned the correct C#/.NET host language. A short first response took approximately one minute; a two-sentence hardware/host stack explanation succeeded in 108 seconds. Responses are capped and given a longer timeout on this machine. Public end-to-end chat is not yet verified because the chat-origin DNS record is absent.
 
 Public chat activation still requires the CNAME for `chat-origin.belespritdaccord.uk` pointing to `3107355f-cda7-48bf-87c5-acf713cda23e.cfargotunnel.com`, with proxy enabled. The current OAuth authorization cannot edit DNS.
 
