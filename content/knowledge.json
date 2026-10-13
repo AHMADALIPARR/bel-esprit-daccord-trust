@@ -251,6 +251,38 @@
       "license": "Proprietary; source visible",
       "license_url": "https://github.com/AHMADALIPARR/unlambda-idris-spark/blob/main/LICENSE",
       "docs": "https://github.com/AHMADALIPARR/unlambda-idris-spark#readme"
+    },
+    {
+      "slug": "devflow-finance-twin",
+      "title": "DevFlow Finance Twin",
+      "what": "Financial systems intellectual property",
+      "status": "Active",
+      "approach": "A polyglot codebase spanning banking rails, ledgers, constraint and symbolic systems, formal methods, neural-network infrastructure, NAND DSLs, and CUDA/Metal kernels.",
+      "problem": "Bring financial workflows, native banking components and verification infrastructure into one reusable codebase.",
+      "scope": "The repository documents individual components and their checks. Integration and deployment depend on the selected platform and application contracts.",
+      "source": "https://github.com/AHMADALIPARR/devflow-finance-twin",
+      "license": "Sovereign Leviathan Covenant · SL-AGPL3-001",
+      "license_url": "https://github.com/AHMADALIPARR/devflow-finance-twin/blob/master/LICENSES/LicenseRef-Sovereign-Leviathan-SL-AGPL3-001.txt",
+      "docs": "https://github.com/AHMADALIPARR/devflow-finance-twin#readme",
+      "ip": "Bel Esprit d’Accord Trust intellectual-property portfolio",
+      "access": "Public source repository",
+      "mirror": "https://huggingface.co/datasets/Snapkitty/devflow-finance-twin"
+    },
+    {
+      "slug": "build-your-own-bank",
+      "title": "Build Your Own Bank",
+      "what": "Banking product development",
+      "status": "Active",
+      "approach": "A product assembled from the existing DevFlow Finance Twin banking code: C# payment rails, COBOL/RPG/PL-I treasury and gateway components, Db2 schemas, native WORM storage, and ledger runtimes.",
+      "problem": "Give developers a source foundation for building their own banking workflows and integrations.",
+      "scope": "Development is active. Banking integration requires the original host contracts, IBM environment and deployment-specific configuration. Repository access is restricted; contact the trust for access and licensing.",
+      "source": "https://github.com/AHMADALIPARR/build-your-own-bank",
+      "license": "Sovereign Leviathan Covenant · SL-AGPL3-001",
+      "license_url": "https://github.com/AHMADALIPARR/devflow-finance-twin/blob/master/LICENSES/LicenseRef-Sovereign-Leviathan-SL-AGPL3-001.txt",
+      "docs": "https://github.com/AHMADALIPARR/build-your-own-bank#readme",
+      "ip": "Bel Esprit d’Accord Trust intellectual-property portfolio",
+      "access": "Private repository",
+      "derived_from": "devflow-finance-twin"
     }
   ],
   "stack": "ORTHO32 RTL and formal specifications → device/host services (C#/.NET) → FastAPI bridge; Java SDK and Swift desktop are client interfaces. MCP currently uses AWK, and the AI gateway core uses M/MUMPS. The website chat is a separate restricted local-model service. No general 768-cycle AI inference guarantee or fabricated silicon certification is established here."
